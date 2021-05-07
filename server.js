@@ -129,13 +129,16 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
  *           schema:
  *            type: object
  *            properties:
- *              id:
- *                type: integer
  *              name:
  *                type: string
+ *              email:
+ *                type: string
+ *              password:
+ *                type: string
  *            example:
- *              id: 10
- *              name: Jessica Smith
+ *              name: Your name
+ *              email: your@email.com
+ *              password: 123
  *      responses: 
  *        200:
  *          description: user created succesfully
