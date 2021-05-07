@@ -124,22 +124,18 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
  *    post:
  *      description: Register to create an account
  *      requestBody:
- *        required: true
- *        content:
- *           application/x-www-form-urlencoded:
- *            schema:
- *               type: object
- *               properties:
- *                 name:
- *                    type: string
- *                 email:
- *                    type: string
- *                 password:
- *                    type: string
- *              required:
- *                - name
- *                - password
- *                - email
+        content:
+          application/json:
+            schema:      # Request body contents
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+              example:   # Sample object
+                id: 10
+                name: Jessica Smith
  *      responses: 
  *        200:
  *          description: user created succesfully
