@@ -34,7 +34,7 @@ const swaggerOptions = {
         email: 's.m.zhantoroev@gmail.com',
         website: 'https://github.com/Zhantoroev/'
       },
-      servers:['http://localhost:3000']
+      servers:['https://peaceful-retreat-54716.herokuapp.com/']
     }
   },
   apis: ['server.js']
@@ -53,7 +53,9 @@ app.get('/', (req, res) => {
  * /: 
  *    get:
  *      description: To check is it working or not
- *      responses: 
+ *      responses:
+ *        200:
+ *          description: It is working
  *        404:
  *          description: Something wrong
  */
@@ -76,7 +78,7 @@ app.get('/all', (req, res) => {
  *      summary: get all users
  *      description: Get all users
  *      responses: 
- *        200: 
+ *        200:
  *          description: Success
  *        404:
  *          description: Something wrong
@@ -120,19 +122,12 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
  *    post:
  *      description: Register to create an account
  *      parameters:
- *      -   name: name
- *          description: write your name
- *          in: formData
- *          type: string
- *          example: 'Yourname'
- *          required: true
- * 
  *      -   name: email
  *          description: write your email
  *          in: formData
  *          type: string
  *          example: "youremail@mail.com"
- *          required: true
+ *          required: true  
  * 
  *      -   name: password
  *          description: write your password
@@ -143,6 +138,8 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
  *      responses: 
  *        200:
  *          description: user created succesfully
+ *        400:
+ *          description: Bad Request. What are you doing?
  *        500:
  *          description: failure in creating user
  */
@@ -169,7 +166,7 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
  *      responses: 
  *        200:
  *          description: succes
- *        404:
+ *        400:
  *          description: something went wrong
  *        500:
  *          description: failure
@@ -192,6 +189,8 @@ app.get('/profile/:id', (req, res) => { profile.handleProfile(req, res, db)})
  *      responses: 
  *        200: 
  *          description: Success
+ *        404:
+ *          description: Weird...
  */
 
 app.put('/score', (req, res) => {score.handleScore(req, res, db)})
