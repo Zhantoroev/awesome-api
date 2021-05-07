@@ -123,20 +123,23 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
  * /register: 
  *    post:
  *      description: Register to create an account
- *      parameters:
- *      -   name: email
- *          description: write your email
- *          in: formData
- *          type: string
- *          example: "youremail@mail.com"
- *          required: true  
- * 
- *      -   name: password
- *          description: write your password
- *          in: formData
- *          type: string
- *          example: "123"
- *          required: true
+ *      requestBody:
+ *        required: true
+ *        content:
+ *           application/x-www-form-urlencoded:
+ *            schema:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                    type: string
+ *                 email:
+ *                    type: string
+ *                 password:
+ *                    type: string
+ *              required:
+ *                - name
+ *                - password
+ *                - email
  *      responses: 
  *        200:
  *          description: user created succesfully
