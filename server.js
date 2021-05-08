@@ -29,14 +29,12 @@ const swaggerOptions = {
     openapi: '3.0.0',
     info: {
       title: "Awesome",
-      version: '1.0',
+      version: '1.0.0',
       desctiption: 'Awesome project API desctiption',
       contact: {
         name : "Syimyk Zhantoroev",
         email: 's.m.zhantoroev@gmail.com',
-        website: 'https://github.com/Zhantoroev/'
-      },
-      servers:['https://peaceful-retreat-54716.herokuapp.com/']
+      }
     }
   },
   apis: ['server.js']
@@ -103,13 +101,16 @@ app.get('/all/:id', (req, res) => {
  * /all/{id}: 
  *    get:
  *      summary: get single user by id
- *      description: get defined user information
- *      parameters:
- *      -   name: id
- *          in: formData
- *          type: number
- *          example: "5"
- *          required: true
+ *      description: single user profile
+ *      requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              properties:
+ *                id:
+ *                  type: number
+ *              example:
+ *                id: 17
  *      responses: 
  *        200: 
  *          description: Success
@@ -122,30 +123,30 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
  * @swagger
  * /register: 
  *    post:
- *      description: Register to create an account
+ *      summary: register user
+ *      description: register a new user
  *      requestBody:
- *      content:
- *        application/json:
- *           schema:
- *            type: object
- *            properties:
- *              name:
- *                type: string
- *              email:
- *                type: string
- *              password:
- *                type: string
- *            example:
- *              name: Your name
- *              email: your@email.com
- *              password: 123
+ *        content:
+ *          application/json:
+ *            schema:
+ *              properties:
+ *                name:
+ *                  type: string
+ *                email:
+ *                  type: string
+ *                password:
+ *                  type: string
+ *              example:
+ *                name: Your name
+ *                email: your@email.com
+ *                password: 123
  *      responses: 
  *        200:
- *          description: user created succesfully
+ *          description: User created succesfully
  *        400:
  *          description: Bad Request. What are you doing?
  *        500:
- *          description: failure in creating user
+ *          description: Failure in creating user
  */
 
 
@@ -154,24 +155,24 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
  * @swagger
  * /signin: 
  *    post:
- *      description: Signin as user
- *      parameters:
- *      -   name: email
- *          in: formData
- *          type: string
- *          example: "youremail@mail.com"
- *          required: true
- * 
- *      -   name: password
- *          in: formData
- *          type: string
- *          example: "123"
- *          required: true
+ *      description: sign in
+ *      requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              properties:
+ *                email:
+ *                  type: string
+ *                password:
+ *                  type: string
+ *              example:
+ *                email: your@email.com
+ *                password: 123
  *      responses: 
  *        200:
  *          description: succes
  *        400:
- *          description: something went wrong
+ *          description: wrong credentials
  *        500:
  *          description: failure
  */
@@ -181,18 +182,19 @@ app.get('/profile/:id', (req, res) => { profile.handleProfile(req, res, db)})
  * @swagger
  * /profile/{id}: 
  *    get:
- *      description: get signed in user information
- *      parameters:
- *      -   name: id
- *          in: formData
- *          type: number
- *          required: true
- *          example: 5
+ *      description: get defined user profile 
+ *      requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              properties:
+ *                id:
+ *                  type: number
+ *              example:
+ *                id: 51
  *      responses: 
  *        200: 
  *          description: Success
- *        404:
- *          description: Weird...
  */
 
 app.put('/score', (req, res) => {score.handleScore(req, res, db)})
@@ -202,17 +204,18 @@ app.put('/score', (req, res) => {score.handleScore(req, res, db)})
  * /score: 
  *    put:
  *      description: update user score
- *      parameters:
- *      -   name: id
- *          in: formData
- *          type: number
- *          example: 5
- *          required: true
- *      -   name: score
- *          in: formData
- *          type: number
- *          example: 10
- *          required: true
+ *      requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              properties:
+ *                id:
+ *                  type: number
+ *                score:
+ *                  type: number
+ *              example:
+ *                id: 51
+ *                score: 100
  *      responses: 
  *        200: 
  *          description: Success
