@@ -103,11 +103,11 @@ app.get('/all/:id', (req, res) => {
  *      summary: get single user by id
  *      description: get defined user information
  *      parameters:
- *      -   name: id
- *          in: formData
- *          type: number
- *          example: "5"
- *          required: true
+ *        - in: path
+ *          name: id
+ *          schema:
+ *            type: integer
+ *            required: true
  *      responses: 
  *        200: 
  *          description: Success
