@@ -101,16 +101,13 @@ app.get('/all/:id', (req, res) => {
  * /all/{id}: 
  *    get:
  *      summary: get single user by id
- *      description: single user profile
- *      requestBody:
- *        content:
- *          application/json:
- *            schema:
- *              properties:
- *                id:
- *                  type: number
- *              example:
- *                id: 17
+ *      description: get defined user information
+ *      parameters:
+ *      -   name: id
+ *          in: formData
+ *          type: number
+ *          example: "5"
+ *          required: true
  *      responses: 
  *        200: 
  *          description: Success
@@ -182,7 +179,8 @@ app.get('/profile/:id', (req, res) => { profile.handleProfile(req, res, db)})
  * @swagger
  * /profile/{id}: 
  *    get:
- *      description: get defined user profile 
+ *      description: sign in
+ *      requestBody:
  *        content:
  *          application/json:
  *            schema:
@@ -202,7 +200,7 @@ app.put('/score', (req, res) => {score.handleScore(req, res, db)})
  * @swagger
  * /score: 
  *    put:
- *      description: update user score
+ *      description: sign in
  *      requestBody:
  *        content:
  *          application/json:
@@ -213,7 +211,7 @@ app.put('/score', (req, res) => {score.handleScore(req, res, db)})
  *                score:
  *                  type: number
  *              example:
- *                id: 51
+ *                id: 17
  *                score: 100
  *      responses: 
  *        200: 
