@@ -183,7 +183,6 @@ app.get('/profile/:id', (req, res) => { profile.handleProfile(req, res, db)})
  * /profile/{id}: 
  *    get:
  *      description: get defined user profile 
- *      requestBody:
  *        content:
  *          application/json:
  *            schema:
