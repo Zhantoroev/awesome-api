@@ -179,16 +179,13 @@ app.get('/profile/:id', (req, res) => { profile.handleProfile(req, res, db)})
  * @swagger
  * /profile/{id}: 
  *    get:
- *      description: sign in
- *      requestBody:
- *        content:
- *          application/json:
- *            schema:
- *              properties:
- *                id:
- *                  type: number
- *              example:
- *                id: 51
+ *      description: get user profile by id
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          schema:
+ *            type: integer
+ *            required: true
  *      responses: 
  *        200: 
  *          description: Success
@@ -200,7 +197,7 @@ app.put('/score', (req, res) => {score.handleScore(req, res, db)})
  * @swagger
  * /score: 
  *    put:
- *      description: sign in
+ *      description: update user score
  *      requestBody:
  *        content:
  *          application/json:
