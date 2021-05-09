@@ -136,7 +136,7 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
  *              example:
  *                name: Your name
  *                email: your@email.com
- *                password: 123
+ *                password: "123"
  *      responses: 
  *        200:
  *          description: User created succesfully
@@ -164,7 +164,7 @@ app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcry
  *                  type: string
  *              example:
  *                email: your@email.com
- *                password: 123
+ *                password: "123"
  *      responses: 
  *        200:
  *          description: succes
