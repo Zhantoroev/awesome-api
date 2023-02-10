@@ -1,12 +1,18 @@
 const handleScore = (req, res, db) => {
   const { id, score } = req.body;
   db('users').where('id', '=', id)
-  .update('entries', score)
-    .returning('entries')
-      .then(entries => {
-        res.json(entries[0]);
+  .update({score})
+  .then(() => {
+    db
+      .select('score')
+      .from('users')
+      .where({ id: id })
+      .then(score => {
+        console.log(score[0].score)
+        res.json(score[0].score);
+      })
   })
-  .catch(err => res.status(400).json('unable to get entries'))
+  .catch(err => res.status(400).json('unable to get score'))
 }
 
 module.exports = {
